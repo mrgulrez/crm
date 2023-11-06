@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -77,16 +78,20 @@ WSGI_APPLICATION = 'mycrm.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.mysql",
+#         "NAME": "u699364163_crm",
+#         "USER": "u699364163_crmuser",
+#         "PASSWORD": "5bY78iI[:Zy",
+#         "HOST": "89.117.157.154",
+#         "PORT": "3306",
+#     }
+# }
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": "u699364163_crm",
-        "USER": "u699364163_crmuser",
-        "PASSWORD": "5bY78iI[:Zy",
-        "HOST": "89.117.157.154",
-        "PORT": "3306",
+     "default": dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
-}
 
 
 # Password validation
@@ -125,7 +130,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 STATIC_URL = '/static/'
 
-# MEDIA_URL = 'img/'
+MEDIA_URL = 'media/'
 # MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
